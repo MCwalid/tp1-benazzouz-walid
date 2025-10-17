@@ -1,4 +1,4 @@
-package ma.emsi.benazzouzwalid.tp0benazzouzwalid;
+package ma.emsi.benazzouzwalid.tp0benazzouzwalid.jsf;
 
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
