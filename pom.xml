@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ma.emsi.benazzouz-walid</groupId>
-    <artifactId>tp0-benazzouz-walid</artifactId>
+    <artifactId>tp1-benazzouz-walid</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>TP0 Benazzouz Walid</name>
+    <name>TP1 Benazzouz Walid</name>
     <packaging>war</packaging>
 
     <properties>
@@ -54,9 +54,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
                 <configuration>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
