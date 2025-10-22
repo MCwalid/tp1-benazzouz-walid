@@ -1,0 +1,9 @@
+.colGauche {
+    width: 55%;
+    vertical-align: top;
+}
+
+.colDroite {
+    width: 45%;
+    vertical-align: top;
+}

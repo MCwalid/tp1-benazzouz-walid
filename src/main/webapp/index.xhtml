@@ -12,70 +12,65 @@
 <h:body>
     <f:view>
 
+        <!-- Les éventuels messages d'erreur non liés à un champ particulier sont affichés ici en rouge -->
         <h:messages errorStyle="color: red" showDetail="true" showSummary="false" globalOnly="true"/>
 
         <h:form id="form">
 
             <p:outputLabel for="rolesysteme" value="Rôle de l'API : "/>
+            <!-- La valeur choisie dans cette liste déroulante sera affectée
+            à la propriété systemRole du backing bean. Cette liste est figée (disabled)
+            dès qu'une requête a été envoyée au serveur. -->
             <p:selectOneMenu id="rolesysteme" value="#{bb.roleSysteme}" editable="true"
                              required="true" requiredMessage="Vous devez indiquer le rôle de l'API"
                              disabled="#{! bb.roleSystemeChangeable}">
                 <f:selectItems value="#{bb.rolesSysteme}"/>
             </p:selectOneMenu>
-            <h:message for="rolesysteme" errorStyle="color: red"/>
-            <h:outputText value="  "/>
-            <h:commandButton value="Nouveau chat" action="#{bb.nouveauChat}"/>
+            <!-- Message d'erreur ici si l'utilisateur oublie d'indiquer un rôle système. -->
+            <h:message for="rolesysteme" errorStyle="color: red" />
 
+            <!-- Si on veut commencer un nouveau chat avec, éventuellement, un autre rôle. -->
+            <h:outputText value="  "/>
+            <h:commandButton value="Nouveau chat" action="#{bb.nouveauChat}" />
+
+            <!-- Les éléments de la page sont disposés en deux colonnes :
+            question et réponse à gauche et historique de la conversation à droite. -->
             <h:panelGrid id="paneltotal" columns="2" columnClasses="topAligned,topAligned">
 
                 <h:panelGrid id="panelgauche" columns="1">
-
-                    <!-- PANEL QUESTION/REPONSE -->
                     <h:panelGrid id="questionetreponse" columns="1">
                         <h:panelGroup>
                             <h:outputText value="Question :"/>
                             <button onclick="copyToClipboard('question')">Copier question</button>
                             <button onclick="toutEffacer()">Effacer question et réponse</button>
                         </h:panelGroup>
-
-                        <h:inputTextarea id="question" value="#{bb.question}" cols="50" rows="5"/>
-
+                        <h:inputTextarea id="question" value="#{bb.question}" title="Question"
+                                         cols="50" rows="5"/>
                         <h:commandButton value="Envoyer la question" action="#{bb.envoyer}"/>
-
                         <h:panelGroup>
                             <h:outputText value="Réponse :"/>
                             <button onclick="copyToClipboard('reponse')">Copier réponse</button>
                         </h:panelGroup>
-
-                        <!-- ✅ Réponse READONLY -->
-                        <h:inputTextarea id="reponse" value="#{bb.reponse}" cols="50" rows="15" readonly="true"/>
-
-                        <!-- ✅ Bouton Mode Debug -->
-                        <h:commandButton id="debugbutton"
-                                         value="#{bb.debug ? 'Mode Normal' : 'Mode Debug'}"
-                                         action="#{bb.toggleDebug}"/>
+                        <h:inputTextarea id="reponse" value="#{bb.reponse}" title="Réponse"
+                                         cols="50" rows="15"/>
+                        <h:commandButton id="debugbutton" value="#{bb.debug?'Mode Normal':'Mode Debug'}"
+                                         action="#{bb.toggleDebug()}"/>
                     </h:panelGrid>
-
-                    <!-- ✅ PANEL DEBUG JSON -->
                     <h:panelGrid id="paneldebug" columns="1" rendered="#{bb.debug}">
                         <h:panelGroup>
                             <h:outputText value="JSON envoyé dans la requête :"/>
                             <button onclick="copyToClipboard('jsonrequete')">Copier requête JSON</button>
                         </h:panelGroup>
-                        <h:inputTextarea id="jsonrequete" value="#{bb.texteRequeteJson}"
+                        <h:inputTextarea id="jsonrequete" value="#{bb.texteRequeteJson}" title="Requête JSON"
                                          cols="50" rows="15" readonly="true"/>
-
                         <h:panelGroup>
                             <h:outputText value="JSON retourné dans la réponse :"/>
                             <button onclick="copyToClipboard('jsonreponse')">Copier réponse JSON</button>
                         </h:panelGroup>
-                        <h:inputTextarea id="jsonreponse" value="#{bb.texteReponseJson}"
+                        <h:inputTextarea id="jsonreponse" value="#{bb.texteReponseJson}" title="Réponse JSON"
                                          cols="50" rows="15" readonly="true"/>
                     </h:panelGrid>
-
                 </h:panelGrid>
-
-                <!-- ✅ PANEL CONVERSATION READONLY -->
                 <h:panelGrid id="paneldroit" columns="1" style="vertical-align: top;">
                     <h:panelGroup>
                         <h:outputText value="Conversation :"/>
@@ -87,7 +82,6 @@
 
             </h:panelGrid>
         </h:form>
-
     </f:view>
 </h:body>
 </html>
