@@ -12,7 +12,6 @@
 <h:body>
     <f:view>
 
-        <!-- Les éventuels messages d'erreur non liés à un champ particulier sont affichés ici en rouge -->
         <h:messages errorStyle="color: red" showDetail="true" showSummary="false" globalOnly="true"/>
 
         <h:form id="form">
@@ -23,10 +22,9 @@
                              disabled="#{! bb.roleSystemeChangeable}">
                 <f:selectItems value="#{bb.rolesSysteme}"/>
             </p:selectOneMenu>
-            <h:message for="rolesysteme" errorStyle="color: red" />
-
+            <h:message for="rolesysteme" errorStyle="color: red"/>
             <h:outputText value="  "/>
-            <h:commandButton value="Nouveau chat" action="#{bb.nouveauChat}" />
+            <h:commandButton value="Nouveau chat" action="#{bb.nouveauChat}"/>
 
             <h:panelGrid id="paneltotal" columns="2" columnClasses="topAligned,topAligned">
 
@@ -39,37 +37,45 @@
                             <button onclick="copyToClipboard('question')">Copier question</button>
                             <button onclick="toutEffacer()">Effacer question et réponse</button>
                         </h:panelGroup>
-                        <h:inputTextarea id="question" value="#{bb.question}" title="Question"
-                                         cols="50" rows="5"/>
+
+                        <h:inputTextarea id="question" value="#{bb.question}" cols="50" rows="5"/>
+
                         <h:commandButton value="Envoyer la question" action="#{bb.envoyer}"/>
+
                         <h:panelGroup>
                             <h:outputText value="Réponse :"/>
                             <button onclick="copyToClipboard('reponse')">Copier réponse</button>
                         </h:panelGroup>
-                        <h:inputTextarea id="reponse" value="#{bb.reponse}" title="Réponse"
-                                         cols="50" rows="15"/>
-                        <h:commandButton id="debugbutton" value="#{bb.debug ? 'Mode Normal' : 'Mode Debug'}"
-                                         action="#{bb.toggleDebug}"/>
 
+                        <!-- ✅ Réponse READONLY -->
+                        <h:inputTextarea id="reponse" value="#{bb.reponse}" cols="50" rows="15" readonly="true"/>
+
+                        <!-- ✅ Bouton Mode Debug -->
+                        <h:commandButton id="debugbutton"
+                                         value="#{bb.debug ? 'Mode Normal' : 'Mode Debug'}"
+                                         action="#{bb.toggleDebug}"/>
                     </h:panelGrid>
 
+                    <!-- ✅ PANEL DEBUG JSON -->
                     <h:panelGrid id="paneldebug" columns="1" rendered="#{bb.debug}">
                         <h:panelGroup>
                             <h:outputText value="JSON envoyé dans la requête :"/>
                             <button onclick="copyToClipboard('jsonrequete')">Copier requête JSON</button>
                         </h:panelGroup>
-                        <h:inputTextarea id="jsonrequete" value="#{bb.texteRequeteJson}" title="Requête JSON"
+                        <h:inputTextarea id="jsonrequete" value="#{bb.texteRequeteJson}"
                                          cols="50" rows="15" readonly="true"/>
+
                         <h:panelGroup>
                             <h:outputText value="JSON retourné dans la réponse :"/>
                             <button onclick="copyToClipboard('jsonreponse')">Copier réponse JSON</button>
                         </h:panelGroup>
-                        <h:inputTextarea id="jsonreponse" value="#{bb.texteReponseJson}" title="Réponse JSON"
+                        <h:inputTextarea id="jsonreponse" value="#{bb.texteReponseJson}"
                                          cols="50" rows="15" readonly="true"/>
                     </h:panelGrid>
 
                 </h:panelGrid>
 
+                <!-- ✅ PANEL CONVERSATION READONLY -->
                 <h:panelGrid id="paneldroit" columns="1" style="vertical-align: top;">
                     <h:panelGroup>
                         <h:outputText value="Conversation :"/>
@@ -81,6 +87,7 @@
 
             </h:panelGrid>
         </h:form>
+
     </f:view>
 </h:body>
 </html>
