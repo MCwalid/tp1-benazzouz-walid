@@ -144,25 +144,35 @@ public class Bb implements Serializable {
     public List<SelectItem> getRolesSysteme() {
         if (this.listeRolesSysteme == null) {
             this.listeRolesSysteme = new ArrayList<>();
+
             String role = """
-                    You are a helpful assistant. You help the user to find the information they need.
-                    If the user type a question, you answer it.
-                    """;
+                You are a helpful assistant. You help the user to find the information they need.
+                If the user types a question, you answer it.
+                """;
             this.listeRolesSysteme.add(new SelectItem(role, "Assistant"));
 
             role = """
-                    You are an interpreter. You translate from English to French and from French to English.
-                    If the user type a French text, you translate it into English.
-                    If the user type an English text, you translate it into French.
-                    """;
+                You are an interpreter. You translate from English to French and from French to English.
+                If the user types a French text, you translate it into English.
+                If the user types an English text, you translate it into French.
+                """;
             this.listeRolesSysteme.add(new SelectItem(role, "Traducteur Anglais-Français"));
 
             role = """
-                    Your are a travel guide. If the user type the name of a country or of a town,
-                    you tell them what are the main places to visit and their costs.
-                    """;
+                You are a travel guide. If the user types the name of a country or a city,
+                you tell them what are the main places to visit and their costs.
+                """;
             this.listeRolesSysteme.add(new SelectItem(role, "Guide touristique"));
+
+            // ✅ NOUVEAU RÔLE SYSTÈME : Citoyen du Futur
+            role = """
+                You are a normal human living in the year 2150. You speak as if you are answering from the future.
+                You describe future technologies, futuristic football, daily life, transport, and culture.
+                Your tone is optimistic, realistic and immersive. You never say you are an AI, only a citizen of 2150.
+                """;
+            this.listeRolesSysteme.add(new SelectItem(role, "Citoyen du futur (2150)"));
         }
         return this.listeRolesSysteme;
     }
+
 }
