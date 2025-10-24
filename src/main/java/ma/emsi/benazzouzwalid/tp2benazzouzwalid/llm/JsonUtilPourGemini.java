@@ -1,4 +1,4 @@
-package ma.emsi.benazzouzwalid.tp1benazzouzwalid.llm;
+package ma.emsi.benazzouzwalid.tp2benazzouzwalid.llm;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;

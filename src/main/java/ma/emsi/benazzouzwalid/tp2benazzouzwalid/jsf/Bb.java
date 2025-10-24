@@ -1,4 +1,4 @@
-package ma.emsi.benazzouzwalid.tp1benazzouzwalid.jsf;
+package ma.emsi.benazzouzwalid.tp2benazzouzwalid.jsf;
 
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -6,13 +6,12 @@ import jakarta.faces.model.SelectItem;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import ma.emsi.benazzouzwalid.tp1benazzouzwalid.llm.JsonUtilPourGemini;
-import ma.emsi.benazzouzwalid.tp1benazzouzwalid.llm.LlmInteraction;
+import ma.emsi.benazzouzwalid.tp2benazzouzwalid.llm.JsonUtilPourGemini;
+import ma.emsi.benazzouzwalid.tp2benazzouzwalid.llm.LlmInteraction;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Named
 @ViewScoped
